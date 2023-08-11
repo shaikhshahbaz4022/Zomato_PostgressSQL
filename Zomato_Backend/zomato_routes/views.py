@@ -23,4 +23,30 @@ def Create(request):
 def Get(req):
     if req.method == "GET":
         items = Menu.objects.all()
-        return JsonResponse(json.dumps({"msg": items}))
+        data = {"items": list(items.values())}
+        return JsonResponse(data)
+
+
+def Update(req, item_id):
+    if req.method == "PATCH":
+        try:
+            menu_item = Menu.objects.get(pk=item_id)
+            menu_item.available = "yes"
+            menu_item.save()
+            return HttpResponse(json.dumps({"msg": "availablity Updated Succesfully "}))
+        except Menu.DoesNotExist:
+            return HttpResponse(json.dumps({"msg": "Item Not Found"}))
+    else:
+        return HttpResponse(json.dumps({"msg": "wrong Request"}))
+
+
+def Delete(req, item_id):
+    if req.method == "DELETE":
+        try:
+            menu_item = Menu.objects.get(id=item_id)
+            menu_item.delete()
+            return HttpResponse(json.dumps({"msg": "availablity Deleted Succesfully "}))
+        except Menu.DoesNotExist:
+            return HttpResponse(json.dumps({"msg": "Item Not Found"}))
+    else:
+        return HttpResponse(json.dumps({"msg": "wrong Request"}))
