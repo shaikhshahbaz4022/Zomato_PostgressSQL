@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navbar</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      .navbar {
+        background-color: #333;
+        overflow: hidden;
+      }
+
+      .navbar-item {
+        float: left;
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        transition: background-color 0.3s ease;
+      }
+
+      .navbar-item:hover {
+        background-color: #555;
+      }
+
+      .home {
+        border-bottom: 2px solid #ff9800;
+      }
+
+      /* Responsive navigation */
+      @media screen and (max-width: 600px) {
+        .navbar-item {
+          float: none;
+          display: block;
+          text-align: left;
+        }
+
+        .navbar-item:hover {
+          background-color: #333;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <a href="./index.html" class="navbar-item home">Home Food App</a>
+      <a href="./create.html" class="navbar-item home">Create Food</a>
+      <a href="./read.html" class="navbar-item">get All Food </a>
+      <a href="./orderCreate.html" class="navbar-item">Book Order</a>
+      <a href="./allorders.html" class="navbar-item">Get Orders</a>
+    </nav>
+  </body>
+</html>

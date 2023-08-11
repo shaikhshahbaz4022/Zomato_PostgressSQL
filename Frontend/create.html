@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create</title>
+    <style>
+      form {
+        display: flex;
+        flex-direction: column;
+        background-color: antiquewhite;
+        width: 30%;
+        border: 1px solid black;
+        padding: 10px;
+        margin: 10px;
+      }
+      input {
+        padding: 5px;
+        margin: 5px;
+      }
+      label {
+        padding: 5px;
+        margin: 5px;
+      }
+      #flex-direction{
+    display: flex;
+    flex-direction: column;
+    font-size: 20px;
+    
+  }
+  a{
+    color: #333;
+  }
+    </style>
+  </head>
+  <body>
+    <div>
+      <form>
+        <label for="ID">Enter ID:</label>
+        <input type="number" name="ID" id="id" />
+
+        <label for="DishName">Enter Dish Name:</label>
+        <input type="text" name="DishName" id="DishName" />
+
+        <label for="price">Enter Price Name:</label>
+        <input type="number" name="price" id="price" />
+
+        <label for="price">Enter Aailablity Status:</label>
+        <select name="available" id="available">
+          <option value="yes">YES</option>
+          <option value="no">NO</option>
+        </select>
+
+        <input type="submit" />
+      </form>
+      <div id="flex-direction">
+        <a href="./create.html">Create order</a>
+        <a href="./orderCreate.html">Book Order</a>
+        <a href="./read.html">All Data </a>
+        <a href="./allorders.html">All Orders</a>
+    </div>
+  </body>
+  <script src="./Scripts/create.js"></script>
+</html>
