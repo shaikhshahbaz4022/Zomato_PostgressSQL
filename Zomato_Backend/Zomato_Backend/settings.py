@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -73,15 +75,9 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Zomato_Backend.wsgi.application'
 
+DATABASE_URL = config("Database_URL")
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'zomato',
-        'USER': 'postgres',
-        'PASSWORD': 'shahbazshaikh',
-        'HOST': 'localhost',  # If your database is on the same machine
-        'PORT': '',           # Default PostgreSQL port (5432)
-    }
+    'default': dj_database_url.parse(DATABASE_URL)
 }
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases

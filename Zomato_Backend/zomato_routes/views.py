@@ -45,7 +45,7 @@ def Delete(req, item_id):
         try:
             menu_item = Menu.objects.get(id=item_id)
             menu_item.delete()
-            return HttpResponse(json.dumps({"msg": "availablity Deleted Succesfully "}))
+            return HttpResponse(json.dumps({"msg": "item Deleted Succesfully "}))
         except Menu.DoesNotExist:
             return HttpResponse(json.dumps({"msg": "Item Not Found"}))
     else:
