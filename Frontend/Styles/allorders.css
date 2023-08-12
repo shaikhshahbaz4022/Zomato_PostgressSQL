@@ -83,12 +83,21 @@ body {
   a:hover {
     color: #1565c0;
   }
-  #flex-direction{
+  #flex-direction {
     display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    
+    justify-content: space-around;
+    margin-top: 20px;
   }
-  a{
-    color: #333;
+  
+  #flex-direction a {
+    text-decoration: none;
+    padding: 10px;
+    border: 1px solid #007bff;
+    border-radius: 5px;
+    color: #007bff;
+  }
+  
+  #flex-direction a:hover {
+    background-color: #007bff;
+    color: white;
   }

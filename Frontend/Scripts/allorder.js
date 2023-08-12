@@ -1,7 +1,7 @@
 const container = document.getElementById("append")
 
 function DisplayData() {
-    fetch(`https://zomato-backend-91qn.onrender.com/order/getorder`)
+    fetch(`https://zomato-backend-sql.onrender.com/order/get`)
         .then((res) => res.json())
         .then((data) => {
             fetchAndRender(data.data)
@@ -16,12 +16,11 @@ function fetchAndRender(data) {
     data.forEach((ele) => {
         const div = document.createElement("div")
         div.classList.add("newdiv")
-        let id = document.createElement("p")
-        id.innerText = ` ID : ${ele.id}`
+
         let dishname = document.createElement('p')
-        dishname.innerText = ` DISHNAME : ${ele.name}`
+        dishname.innerText = `CUSTOMER_NAME: ${ele.name}`
         let price = document.createElement('p')
-        price.innerText = `PRICE : ${ele.foodname}`
+        price.innerText = `DISHNAME : ${ele.foodname}`
         let available = document.createElement('p')
         available.innerText = `AVAILABLITY : ${ele.status}`
         let UPDATEele = document.createElement("select")
@@ -44,12 +43,12 @@ function fetchAndRender(data) {
 
         UPDATEele.append(option12, option1, option2, option3, option4)
         UPDATEele.addEventListener("change", () => {
-            fetch(`https://zomato-backend-91qn.onrender.com/order/updateorder`, {
+            fetch(`https://zomato-backend-sql.onrender.com/order/update/${ele.id}`, {
                 method: "PATCH",
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({ id: ele.id, status: UPDATEele.value })
+                body: JSON.stringify({ status: UPDATEele.value })
             })
                 .then((res) => res.json())
                 .then((data) => {
@@ -64,12 +63,9 @@ function fetchAndRender(data) {
         Deleteele.innerText = "DELETE"
         Deleteele.classList.add("delete-button")
         Deleteele.addEventListener("click", () => {
-            fetch(`https://zomato-backend-91qn.onrender.com/order/deleteorder`, {
+            fetch(`https://zomato-backend-sql.onrender.com/order/delete/${ele.id}`, {
                 method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ id: ele.id })
+
             })
                 .then((res) => res.json())
                 .then((data) => {
@@ -81,7 +77,7 @@ function fetchAndRender(data) {
         })
 
 
-        div.append(id, dishname, price, available, UPDATEele, Deleteele)
+        div.append(dishname, price, available, UPDATEele, Deleteele)
         container.append(div)
 
     });

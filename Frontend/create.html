@@ -5,39 +5,81 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create</title>
     <style>
-      form {
-        display: flex;
-        flex-direction: column;
-        background-color: antiquewhite;
-        width: 30%;
-        border: 1px solid black;
-        padding: 10px;
-        margin: 10px;
-      }
-      input {
-        padding: 5px;
-        margin: 5px;
-      }
-      label {
-        padding: 5px;
-        margin: 5px;
-      }
-      #flex-direction{
-    display: flex;
-    flex-direction: column;
-    font-size: 20px;
-    
-  }
-  a{
-    color: #333;
-  }
+/* Apply styles to the form container */
+#form-container {
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  background-color:aqua;
+}
+
+/* Style the form elements */
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+select {
+  appearance: none;
+  background: transparent;
+}
+
+/* Style the submit button */
+input[type="submit"] {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+/* Style the flex-direction container */
+#flex-direction {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+#flex-direction a {
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  color: #007bff;
+}
+
+#flex-direction a:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Apply a bit of margin to the top of the page */
+body {
+  margin-top: 20px;
+}
+
     </style>
   </head>
   <body>
-    <div>
+    <div id="form-container">
       <form>
-        <label for="ID">Enter ID:</label>
-        <input type="number" name="ID" id="id" />
 
         <label for="DishName">Enter Dish Name:</label>
         <input type="text" name="DishName" id="DishName" />

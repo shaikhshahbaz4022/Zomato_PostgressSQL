@@ -1,9 +1,10 @@
 const container = document.getElementById("append")
 
 function DisplayData() {
-    fetch(`https://zomato-backend-91qn.onrender.com/crud/get`)
+    fetch(`https://zomato-backend-sql.onrender.com/crud/get`)
         .then((res) => res.json())
         .then((data) => {
+            console.log(data.data);
             fetchAndRender(data.data)
         })
         .catch((err) => console.log(err))
@@ -13,12 +14,12 @@ function fetchAndRender(data) {
 
     container.innerHTML = ""
     data.forEach((ele) => {
+        console.log(ele.id);
         const div = document.createElement("div")
         div.classList.add("newdiv")
-        let id = document.createElement("p")
-        id.innerText = ` ID : ${ele.id}`
+
         let dishname = document.createElement('p')
-        dishname.innerText = ` DISHNAME : ${ele.dishname}`
+        dishname.innerText = ` DISHNAME : ${ele.foodname}`
         let price = document.createElement('p')
         price.innerText = `PRICE : ${ele.price}`
         let available = document.createElement('p')
@@ -26,17 +27,16 @@ function fetchAndRender(data) {
         let UPDATEele = document.createElement("button")
         UPDATEele.innerText = "UPDATE"
         UPDATEele.addEventListener("click", () => {
-            fetch(`https://zomato-backend-91qn.onrender.com/crud/update`, {
+
+            fetch(`https://zomato-backend-sql.onrender.com/crud/update/${ele.id}`, {
                 method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ id: ele.id })
+
             })
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
                     DisplayData()
+                    alert(data.msg)
                 })
                 .catch((e) => console.log(e))
         })
@@ -44,23 +44,21 @@ function fetchAndRender(data) {
         let Deleteele = document.createElement("button")
         Deleteele.innerText = "DELETE"
         Deleteele.addEventListener("click", () => {
-            fetch(`https://zomato-backend-91qn.onrender.com/crud/delete`, {
+            fetch(`https://zomato-backend-sql.onrender.com/crud/delete/${ele.id}`, {
                 method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ id: ele.id })
+
             })
                 .then((res) => res.json())
                 .then((data) => {
                     console.log(data);
                     DisplayData()
+                    alert(data.msg)
                 })
                 .catch((e) => console.log(e))
         })
 
 
-        div.append(id, dishname, price, available, UPDATEele, Deleteele)
+        div.append(dishname, price, available, UPDATEele, Deleteele)
         container.append(div)
 
     });
