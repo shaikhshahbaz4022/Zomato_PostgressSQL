@@ -3,9 +3,9 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    # path("createorder", views.CreateOrder, name="Createorder"),
-    # path("getorder", views.GetOrderData, name="getDataorder"),
-    # path('updateorder', views.UpdateOrderStatus, name="updateorder"),
-    # path('deleteorder', views.DeleteOrderStatus, name="deleteorder"),
+    path('get', views.GetOrder, name='get'),
+    path('create', views.CreateOrder, name='create'),
+    path('update/<int:itemid>', views.Update, name='update'),
+    path('delete/<int:itemid>', views.Delete, name='delete')
 
 ]

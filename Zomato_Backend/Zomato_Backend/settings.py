@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 import dj_database_url
 from decouple import config
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -75,10 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Zomato_Backend.wsgi.application'
 
-DATABASE_URL = config("Database_URL")
-DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL)
-}
+
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -88,7 +84,10 @@ DATABASES = {
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
+database_URL = config("Database_URL")
+DATABASES = {
+    'default': dj_database_url.parse(database_URL)
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
