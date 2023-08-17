@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import json
 from django.http import JsonResponse, HttpResponse
+from django.core.serializers import serialize
 # Create your views here.
 from .models import FoodMenu
 
@@ -8,9 +9,9 @@ from .models import FoodMenu
 def Create(request):
     if request.method == "POST":
         body = json.loads(request.body)
-        foodname = body["foodname"]
-        price = body["price"]
-        available = body["available"]
+        foodname = body.get('foodname')
+        price = body.get('price')
+        available = body.get('available')
         menu = FoodMenu.objects.create(
             foodname=foodname, price=price, available=available)
     else:
@@ -20,8 +21,9 @@ def Create(request):
 
 def Get(req):
     menu = FoodMenu.objects.all()
-    arr = {"data": list(menu.values())}
-    return JsonResponse(arr)
+    # arr = {"data": list(menu.values())}
+    arr = serialize('json', menu)
+    return JsonResponse(arr, safe=False)
 
 
 def Update(request, itemid):
