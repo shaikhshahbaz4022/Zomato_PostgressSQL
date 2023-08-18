@@ -21,9 +21,9 @@ def Create(request):
 
 def Get(req):
     menu = FoodMenu.objects.all()
-    # arr = {"data": list(menu.values())}
-    arr = serialize('json', menu)
-    return JsonResponse(arr, safe=False)
+    arr = {"data": list(menu.values())}
+    # arr = serialize('json', menu)
+    return JsonResponse(arr)
 
 
 def Update(request, itemid):

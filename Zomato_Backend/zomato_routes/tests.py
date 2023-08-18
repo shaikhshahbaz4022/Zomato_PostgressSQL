@@ -22,15 +22,15 @@ class Menutests(TestCase):
 
     def test_get_route(self):
         url = '/crud/get'
-
         response = self.client.get(url)
-        print(response)
-
         self.assertEqual(response.status_code, 200)
-        response_data = json.loads(response.content.decode('utf-8'))
-        print(response_data)
-        data_expected = '[]'
-        self.assertEqual(response_data, data_expected)
+        data = response.json()
+
+        self.assertTrue(isinstance(data, dict))
+        self.assertTrue('data' in data)
+        self.assertTrue(isinstance(data['data'], list))
+
+        self.assertEqual(len(data['data']), FoodMenu.objects.count())
 
     def test_update_route(self):
         self.menu_items = FoodMenu.objects.create(

@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import json
 from django.http import HttpResponse, JsonResponse
+from django.core.serializers import serialize
 # Create your views here.
 
 from .models import Order
@@ -9,9 +10,9 @@ from .models import Order
 def CreateOrder(request):
     if request.method == "POST":
         body = json.loads(request.body)
-        foodname = body['foodname']
-        name = body['name']
-        status = "pending"
+        foodname = body.get("foodname")
+        name = body.get('name')
+        status = body.get("status")
         ordercreate = Order.objects.create(
             foodname=foodname, name=name, status=status)
     else:
@@ -20,9 +21,11 @@ def CreateOrder(request):
 
 
 def GetOrder(req):
-    allorders = Order.objects.all()
-    allordersarr = {"data": list(allorders.values())}
-    return JsonResponse(allordersarr)
+    if req.method == "GET":
+        allorders = Order.objects.all()
+        allordersarr = {"data": list(allorders.values())}
+        # latestData = serialize('json', allorders)
+        return JsonResponse(allordersarr)
 
 
 def Update(req, itemid):
